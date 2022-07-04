@@ -53,4 +53,10 @@ public class UserServiceImpl implements UseService {
             return new GenericResponse<String>(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), MyNetworkConstants.USER_NOT_FOUND);
         }
     }
+
+    @Override
+    public GenericResponse<Boolean> isUserNameAvailable(String userName) {
+        boolean exists=userRepo.existsByUserName(userName);
+        return new GenericResponse<Boolean>(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), !(exists));
+    }
 }

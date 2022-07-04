@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@CrossOrigin({"*"})
 public class RegisterVerifyController {
 
     @Autowired
@@ -22,5 +23,9 @@ public class RegisterVerifyController {
     @PostMapping("/verifyUser")
     public GenericResponse<String> verifyUser(@RequestBody(required = true) VerifyUserDto verifyUserDto){
         return userService.verifyUser(verifyUserDto.getUserName(), verifyUserDto.getVerificationCode());
+    }
+    @GetMapping("/isUserNameAvailable/{userName}")
+    public GenericResponse<Boolean> isUserNameAvailable(@PathVariable(name="userName") String userName){
+        return userService.isUserNameAvailable(userName);
     }
 }

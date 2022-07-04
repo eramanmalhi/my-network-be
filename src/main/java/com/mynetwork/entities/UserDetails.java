@@ -1,5 +1,6 @@
 package com.mynetwork.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -25,9 +27,11 @@ public class UserDetails {
     private String address;
     private String mobile;
     @CreatedDate
-    private Long createdDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd HH:mm:ssZ")
+    private Date createdDate;
     @LastModifiedDate
-    private Long modifiedDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd HH:mm:ssZ")
+    private Date modifiedDate;
     private String roles;
 
 }

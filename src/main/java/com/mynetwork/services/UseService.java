@@ -13,4 +13,6 @@ public interface UseService {
     GenericResponse<String> saveUserLogin(UserLogin userDetails);
 
     GenericResponse<String> verifyUser(String userName, String verificationCode);
+
+    GenericResponse<Boolean> isUserNameAvailable(String userName);
 }
