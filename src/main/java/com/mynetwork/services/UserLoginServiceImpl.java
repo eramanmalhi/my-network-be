@@ -27,21 +27,21 @@ public class UserLoginServiceImpl implements UserLoginService{
             UserDetails details=userDetailsRepo.findByUserName(user.get().getUserName());
             LoginResponse response=null;
             if(user.get().isVerified() && user.get().isActive() && !(user.get().isLocked())) {
-                response = new LoginResponse(request.getUserName(), user.get().getEmailId(), MyNetworkConstants.LOGIN_SUCCESS, details);
+                response = new LoginResponse(request.getUserName(), user.get().getEmailId(),null, MyNetworkConstants.LOGIN_SUCCESS, details);
             }
             else if(!(user.get().isVerified())){
-                response = new LoginResponse(request.getUserName(), null, MyNetworkConstants.USER_NOT_VERIFIED, null);
+                response = new LoginResponse(request.getUserName(), null, MyNetworkConstants.USER_NOT_VERIFIED_CODE, MyNetworkConstants.USER_NOT_VERIFIED, null);
             }
             else if(!(user.get().isActive())){
-                response = new LoginResponse(request.getUserName(), null, MyNetworkConstants.USER_NOT_ACTIVE, null);
+                response = new LoginResponse(request.getUserName(), null,MyNetworkConstants.USER_NOT_ACTIVE_CODE, MyNetworkConstants.USER_NOT_ACTIVE, null);
             }
             else if(user.get().isLocked()){
-                response = new LoginResponse(request.getUserName(), null, MyNetworkConstants.USER_LOCKED, null);
+                response = new LoginResponse(request.getUserName(), null,MyNetworkConstants.USER_LOCKED_CODE, MyNetworkConstants.USER_LOCKED, null);
             }
             return new GenericResponse<LoginResponse>(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), response);
         }
         else{
-            LoginResponse response=new LoginResponse(request.getUserName(), null,MyNetworkConstants.LOGIN_FAILED+" for "+request.getUserName(), null);
+            LoginResponse response=new LoginResponse(request.getUserName(), null,null,MyNetworkConstants.LOGIN_FAILED+" for "+request.getUserName(), null);
             return new GenericResponse<LoginResponse>(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase(), response);
         }
     }

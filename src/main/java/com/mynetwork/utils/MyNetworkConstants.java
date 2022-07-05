@@ -11,6 +11,11 @@ public interface MyNetworkConstants {
     public static final String LOGIN_SUCCESS="Login Successful";
     public static final String LOGIN_FAILED="Login Failed, Please Check UserName & Password";
     public static final String USER_NOT_VERIFIED="User Is Not Verified Yet, Please Verify The User Before Using MyNetwork";
+    public static final String USER_NOT_VERIFIED_CODE="NOT_VERIFIED";
     public static final String USER_NOT_ACTIVE="User Is INACTIVE, Please Activate Account Before Using MyNetwork";
+    public static final String USER_NOT_ACTIVE_CODE="NOT_ACTIVE";
     public static final String USER_LOCKED="User Is LOCKED, Please Unlock Account Before Using MyNetwork";
+    public static final String USER_LOCKED_CODE="LOCKED";
+
+
 }
