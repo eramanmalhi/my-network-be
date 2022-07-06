@@ -30,13 +30,13 @@ public class UserLoginServiceImpl implements UserLoginService{
                 response = new LoginResponse(request.getUserName(), user.get().getEmailId(),null, MyNetworkConstants.LOGIN_SUCCESS, details);
             }
             else if(!(user.get().isVerified())){
-                response = new LoginResponse(request.getUserName(), null, MyNetworkConstants.USER_NOT_VERIFIED_CODE, MyNetworkConstants.USER_NOT_VERIFIED, null);
+                response = new LoginResponse(request.getUserName(), user.get().getEmailId(), MyNetworkConstants.USER_NOT_VERIFIED_CODE, MyNetworkConstants.USER_NOT_VERIFIED, null);
             }
             else if(!(user.get().isActive())){
-                response = new LoginResponse(request.getUserName(), null,MyNetworkConstants.USER_NOT_ACTIVE_CODE, MyNetworkConstants.USER_NOT_ACTIVE, null);
+                response = new LoginResponse(request.getUserName(), user.get().getEmailId(),MyNetworkConstants.USER_NOT_ACTIVE_CODE, MyNetworkConstants.USER_NOT_ACTIVE, null);
             }
             else if(user.get().isLocked()){
-                response = new LoginResponse(request.getUserName(), null,MyNetworkConstants.USER_LOCKED_CODE, MyNetworkConstants.USER_LOCKED, null);
+                response = new LoginResponse(request.getUserName(), user.get().getEmailId(),MyNetworkConstants.USER_LOCKED_CODE, MyNetworkConstants.USER_LOCKED, null);
             }
             return new GenericResponse<LoginResponse>(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), response);
         }
